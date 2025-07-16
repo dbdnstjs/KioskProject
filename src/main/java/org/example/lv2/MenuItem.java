@@ -1,7 +1,7 @@
 package org.example.lv2;
 
 public class MenuItem {
-    private String name, price, description;
+    private final String name, price, description;
 
     public MenuItem(String name,String price,String description){
         this.name = name;
