@@ -15,7 +15,7 @@ public class Lv2Kiosk {
         menuItems.add(new MenuItem("Hamburger", "5.4", "비프패티를 기반으로 야채가 들어간 기본버거"));
 
         while (true) {
-            System.out.println("[ SHAKESHACK MENU ]");
+            System.out.println("[ SHAKE-SHACK MENU ]");
             for (int i = 0; i < menuItems.size(); i++) {
                 MenuItem item = menuItems.get(i);
                 System.out.printf("%d. %-12s | W%-5s | %s\n", i + 1, item.getName(), item.getPrice(), item.getDescription());

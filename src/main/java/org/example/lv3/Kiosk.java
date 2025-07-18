@@ -14,7 +14,7 @@ public class Kiosk {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            System.out.println("[ SHAKESHACK MENU ]");
+            System.out.println("[ SHAKE-SHACK MENU ]");
             for (int i = 0; i < menuItems.size(); i++) {
                 MenuItem item = menuItems.get(i);
                 System.out.printf("%d. %-12s | W%-5s | %s\n", i + 1, item.getName(), item.getPrice(), item.getDescription());
