@@ -7,11 +7,9 @@ import java.util.Scanner;
 //키오스크가 메뉴클레스 관리 -> 메뉴 아이템(버거,음료,간식 등)
 public class Kiosk {
     List<Menu> menu;
-    List<MenuItem> menuItems;
 
-    public Kiosk(List<Menu> menu, List<MenuItem> menuItems) {
+    public Kiosk(List<Menu> menu) {
         this.menu = menu;
-        this.menuItems = menuItems;
     }
 
     public void start() {
@@ -29,10 +27,11 @@ public class Kiosk {
             // List<Menu>에 인덱스로 접근하면 Menu만 추출할 수 있겠죠?
             System.out.printf("%d. %-11s | %-5s \n", 0, "종료", "종료");
             int num1 = sc.nextInt();
-            sc.nextLine();
+            sc.nextLine(); //버퍼 초기화
 
             while (true) {
                 if (num1 == 1) {
+                    List<MenuItem> menuItems = menu.get(num1-1).getMenuItems();
                     // Menu가 가진 List<MenuItem>을 반복문을 활용하여 햄버거 메뉴 출력
                     System.out.println("[ BURGERS MENU ]");
                     int cnt = 0;
@@ -46,6 +45,7 @@ public class Kiosk {
                     // 입력 받은 숫자가 올바르다면 인덱스로 활용해서 Menu가 가지고 있는 List<MenuItem>에 접근하기
                     if (num2 > 0 && num2 < 5) {
                         // menu.getMenuItems().get(i); 같은 형식으로 하나씩 들어가서 얻어와야 합니다.
+
                         MenuItem category = menuItems.get(num2 - 1);
                         System.out.printf("선택한 메뉴: %s | W%s | %s \n", category.getName(), category.getPrice(), category.getDescription());
                     } else if (num2 == 0) {
