@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 //키오스크가 메뉴클레스 관리 -> 메뉴 아이템(버거,음료,간식 등)
 public class Kiosk {
-    List<Menu> menu = new ArrayList<>();
-    List<MenuItem> menuItems = new ArrayList<>();
+    List<Menu> menu;
+    List<MenuItem> menuItems;
 
     public Kiosk(List<Menu> menu, List<MenuItem> menuItems) {
         this.menu = menu;
@@ -21,8 +21,7 @@ public class Kiosk {
         while (true) {
             // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력
             System.out.println("[ MAIN MENU ]");
-            for (int i = 0; i < menu.size(); i++) {
-                Menu category = menu.get(i);
+            for (Menu category : menu) {
                 System.out.printf("%s. %s\n", category.getNum(), category.getName());
             }
             // 숫자 입력 받기
@@ -36,9 +35,9 @@ public class Kiosk {
                 if (num1 == 1) {
                     // Menu가 가진 List<MenuItem>을 반복문을 활용하여 햄버거 메뉴 출력
                     System.out.println("[ BURGERS MENU ]");
-                    for (int i = 0; i < menuItems.size(); i++) {
-                        MenuItem category = menuItems.get(i);
-                        System.out.printf("%d. %-12s | W%-5s | %s\n", i + 1, category.getName(), category.getPrice(), category.getDescription());
+                    int cnt = 0;
+                    for (MenuItem category : menuItems) {
+                        System.out.printf("%d. %-12s | W%-5s | %s\n", ++cnt, category.getName(), category.getPrice(), category.getDescription());
                     }
                     System.out.printf("%d. %s\n", 0, "뒤로가기");
                     // 숫자 입력 받기
@@ -47,7 +46,7 @@ public class Kiosk {
                     // 입력 받은 숫자가 올바르다면 인덱스로 활용해서 Menu가 가지고 있는 List<MenuItem>에 접근하기
                     if (num2 > 0 && num2 < 5) {
                         // menu.getMenuItems().get(i); 같은 형식으로 하나씩 들어가서 얻어와야 합니다.
-                        MenuItem category = menuItems.get(num2-1);
+                        MenuItem category = menuItems.get(num2 - 1);
                         System.out.printf("선택한 메뉴: %s | W%s | %s \n", category.getName(), category.getPrice(), category.getDescription());
                     } else if (num2 == 0) {
                         break;
