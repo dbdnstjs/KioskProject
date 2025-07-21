@@ -94,6 +94,7 @@ public class Kiosk {
                         sc.nextLine();
                         if(num2==1){
                             //System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.",);
+                            //init cart
                         }else{
                             break;
                         }
