@@ -1,9 +1,12 @@
 package org.example.challenge.lv1;
 
-public class CartItem {
-    private final String name, price, description;
+import java.math.BigDecimal;
 
-    public CartItem(String name, String price, String description) {
+public class CartItem {
+    private final String name,  description;
+    private final BigDecimal price;
+
+    public CartItem(String name, BigDecimal price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -13,7 +16,7 @@ public class CartItem {
         return name;
     }
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
