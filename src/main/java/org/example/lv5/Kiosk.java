@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 //키오스크가 메뉴클레스 관리 -> 메뉴 아이템(버거,음료,간식 등)
 public class Kiosk {
-    List<Menu> menu;
+    private final List<Menu> menu;
 
     public Kiosk(List<Menu> menu) {
         this.menu = menu;

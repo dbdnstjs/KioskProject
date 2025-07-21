@@ -6,7 +6,7 @@ import java.util.List;
 public class Lv5Kiosk {
     public static void main(String[] args) {
         // Menu 객체 생성을 통해 이름 설정
-        List<Menu> menu = new ArrayList<>();
+        final List<Menu> menu = new ArrayList<>();
         // Menu 클래스 내 있는 List<MenuItem> 에 MenuItem 객체 생성하면서 삽입
         Menu menuitem = new Menu("1","Burgers");
         menuitem.addMenuItem(new MenuItem("ShackBurger", "6.9", "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));

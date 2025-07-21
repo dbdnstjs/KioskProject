@@ -6,8 +6,8 @@ import java.util.List;
 //메뉴 클래스가 메뉴아이템을 관리할수 있게 변경
 //메뉴가 메뉴아이템 관리 -> 특정 매뉴(상세품목 = 버거의 종류, 피자의 종류)
 public class Menu {
-    private String num, name;
-    private List<MenuItem> menuItems = new ArrayList<>();
+    private final String num, name;
+    private final List<MenuItem> menuItems = new ArrayList<>();
     // MenuItem 클래스를 List로 관리
     public Menu(String num, String name) {
         this.num = num;
