@@ -25,4 +25,7 @@ public class Cart {
         return sum;
     }
 
+    public void clearCart(){
+        cartItems.clear();
+    }
 }
