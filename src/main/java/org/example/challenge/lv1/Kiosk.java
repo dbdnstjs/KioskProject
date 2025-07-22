@@ -11,6 +11,7 @@ import java.util.Scanner;
 //
 public class Kiosk {
     private final List<Menu> menu;
+    private final List<CartItem> cartItems = new ArrayList<>();
 
     public Kiosk(List<Menu> menu) {
         this.menu = menu;
@@ -30,8 +31,6 @@ public class Kiosk {
             // 입력 받은 숫자가 올바르다면 인덱스로 활용하여 List에 접근하기
             // List<Menu>에 인덱스로 접근하면 Menu만 추출할 수 있겠죠?
             System.out.printf("%d. %-11s | %-5s \n", 0, "종료", "종료");
-
-            List<CartItem> cartItems = new ArrayList<>();
 
             if (!cartItems.isEmpty()) {
                 System.out.println("""
