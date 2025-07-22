@@ -91,7 +91,7 @@ public class Kiosk {
                 } else if (num1 == 4 || num1 == 5) {
                     //if cart is empty call exception
                     if (num1 == 4) {
-                        System.out.printf("아래와 같이 주문 하시겠습니까?\n\n[ Orders ]\n");
+                        System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
                         //call cart
                         //System.out.printf("[ Total ]\n W %s\n\n1. 주문      2. 메뉴판\n",);
                         int num2 = sc.nextInt();
