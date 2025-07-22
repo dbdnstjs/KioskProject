@@ -8,18 +8,18 @@ import java.util.List;
 public class Cart {
     private final List<CartItem> cartItems = new ArrayList<>();
 
-    public void addCartItem(CartItem cartItem){
+    public void addCartItem(CartItem cartItem) {
         cartItems.add(cartItem);
     }
 
-    public List<CartItem> getCartItems(){
+    public List<CartItem> getCartItems() {
         return cartItems;
     }
 
-    public BigDecimal sumCart(){
+    public BigDecimal sumCart() {
         BigDecimal sum = BigDecimal.ZERO;
 
-        for(CartItem item : cartItems){
+        for (CartItem item : cartItems) {
             sum = sum.add(item.getPrice());
         }
         return sum;

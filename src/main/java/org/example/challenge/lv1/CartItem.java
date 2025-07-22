@@ -3,7 +3,7 @@ package org.example.challenge.lv1;
 import java.math.BigDecimal;
 
 public class CartItem {
-    private final String name,  description;
+    private final String name, description;
     private final BigDecimal price;
 
     public CartItem(String name, BigDecimal price, String description) {

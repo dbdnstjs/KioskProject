@@ -1,5 +1,7 @@
 package org.example.challenge.lv1;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,14 +31,15 @@ public class Kiosk {
             // List<Menu>에 인덱스로 접근하면 Menu만 추출할 수 있겠죠?
             System.out.printf("%d. %-11s | %-5s \n", 0, "종료", "종료");
 
-            /*
-            if cart is not empty
-            System.out.println("""
-                            [ ORDER MENU ]
-                            4. Orders       | 장바구니를 확인 후 주문합니다.
-                            5. Cancel       | 진행중인 주문을 취소합니다.
-                            """);
-            */
+            List<CartItem> cartItems = new ArrayList<>();
+
+            if (!cartItems.isEmpty()) {
+                System.out.println("""
+                        [ ORDER MENU ]
+                        4. Orders       | 장바구니를 확인 후 주문합니다.
+                        5. Cancel       | 진행중인 주문을 취소합니다.
+                        """);
+            }
 
             int num1 = sc.nextInt();
             sc.nextLine(); //버퍼 초기화
@@ -69,9 +72,11 @@ public class Kiosk {
                         System.out.println("1. 확인        2. 취소");
                         int num3 = sc.nextInt();
                         if (num3 == 1) {
-                            //call addCart
+                            cartItems.add(new CartItem(category.getName(), new BigDecimal(category.getPrice()), category.getDescription()));
                             System.out.printf("%s 이 장바구니에 추가되었습니다.\n", category.getName());
-                        } else if (num3 == 0) {
+                            System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.");
+                            break;
+                        } else if (num3 == 2) {
                             System.out.println("취소되었습니다.");
                         } else {
                             throw new IllegalArgumentException("오류 : 0~1번 숫자를 입력해주세요.");
@@ -86,19 +91,19 @@ public class Kiosk {
                     break;
                 } else if (num1 == 4 || num1 == 5) {
                     //if cart is empty call exception
-                    if(num1==4){
+                    if (num1 == 4) {
                         System.out.printf("아래와 같이 주문 하시겠습니까?\n\n[ Orders ]\n");
                         //call cart
                         //System.out.printf("[ Total ]\n W %s\n\n1. 주문      2. 메뉴판\n",);
                         int num2 = sc.nextInt();
                         sc.nextLine();
-                        if(num2==1){
+                        if (num2 == 1) {
                             //System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.",);
                             //init cart
-                        }else{
+                        } else {
                             break;
                         }
-                    }else{
+                    } else {
                         break;
                     }
                 } else {
@@ -108,4 +113,3 @@ public class Kiosk {
         }
     }
 }
-
