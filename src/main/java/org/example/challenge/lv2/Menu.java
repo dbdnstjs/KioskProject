@@ -17,6 +17,10 @@ public class Menu {
         menuItems.add(menuItem);
     }
 
+    List<MenuItem> getMenuItems(){
+        return menuItems;
+    }
+
     String getName() {
         return name;
     }
@@ -24,4 +28,6 @@ public class Menu {
     String getNum() {
         return num;
     }
+
+
 }

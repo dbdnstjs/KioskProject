@@ -15,11 +15,13 @@ public class MenuItem {
         return name;
     }
 
-    public BigDecimal getPrice() {
-        return new BigDecimal(price);
+    public String getPrice() {
+        return price;
     }
 
     public String getDescription() {
         return description;
     }
+
+
 }
