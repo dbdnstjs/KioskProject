@@ -2,29 +2,24 @@ package org.example.challenge.lv2;
 
 import java.math.BigDecimal;
 
-// 메뉴 아이템의 이름, 가격, 설명
-public enum MenuItem {
-    BURGER("ShackBurger","6.9","토마토, 양상추, 쉑소스가 토핑된 치즈버거"),
-    DRINKS("ShackDrink","5.9","토마토, 양상추, 쉑소스가 들어간 음료"),
-    DESSERTS("ShackDessert","4.9","토마토, 양상추, 쉑소스가 들어간 디저트");
+public class MenuItem {
+    private final String name, price, description;
 
-    private final String name,price,description;
-
-    MenuItem(String name,String price,String description){
+    MenuItem(String name, String price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public BigDecimal getPrice(){
+    public BigDecimal getPrice() {
         return new BigDecimal(price);
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 }
