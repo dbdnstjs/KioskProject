@@ -1,8 +1,11 @@
 package org.example.challenge.lv2;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Scanner;
 
+//add Stream, Lambda
 // 버거, 음료, 디저트를 출력하고 사용자 입력을 처리하는 키오스크 클래스
 // 할인률 추가 및 stream을 이용하여 특정 메뉴 빼기 및 출력 (캡슐화)
 public class Kiosk {
@@ -62,9 +65,17 @@ public class Kiosk {
 
                             int num3 = sc.nextInt();
                             sc.nextLine();
-
-                            System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.%n", cart.sumCart());
-                            cart.clearCart();
+                            if(num3>0&&num3<5){
+                                SaleItem[] item = SaleItem.values();
+                                BigDecimal total,discountRate,discountPercent;
+                                discountPercent = new BigDecimal(item[num3-1].getPrice());
+                                discountRate = BigDecimal.ONE.subtract(discountPercent.divide(new BigDecimal("100"), 2, RoundingMode.HALF_UP));
+                                total = cart.sumCart().multiply(discountRate.setScale(2,RoundingMode.HALF_UP));
+                                System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.%n",total);
+                                cart.clearCart();
+                            }else{
+                                throw new IllegalArgumentException("오류 : 1~4번 숫자를 입력해주세요.");
+                            }
                             continue;
                         } else if (num2 == 2) {
                             continue;
