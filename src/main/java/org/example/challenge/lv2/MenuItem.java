@@ -1,7 +1,5 @@
 package org.example.challenge.lv2;
 
-import java.math.BigDecimal;
-
 public class MenuItem {
     private final String name, price, description;
 

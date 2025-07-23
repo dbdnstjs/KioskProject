@@ -24,7 +24,13 @@ public class Kiosk {
                 }
                 System.out.printf("%d. %-11s | %-5s %n", 0, "종료", "종료");
 
-                //if cartItem empty
+                if (!cart.getCartItems().isEmpty()) {
+                    System.out.println("""
+                            [ ORDER MENU ]
+                            4. Orders       | 장바구니를 확인 후 주문합니다.
+                            5. Cancel       | 진행중인 주문을 취소합니다.
+                            """);
+                }
 
                 int num1 = sc.nextInt(); // select burger drink dessert exit
                 sc.nextLine();
@@ -35,9 +41,25 @@ public class Kiosk {
                     break;
                 }
 
-                if ((num1 == 4 || num1 == 5)) {
-                    //4. order menu 5. cancel
-                    break;
+                if ((num1 == 4 || num1 == 5) && !cart.getCartItems().isEmpty()) {
+                    if(num1==5){
+                        cart.clearCart();
+                        continue;
+                    }
+                    System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
+                    for (CartItem item : cart.getCartItems()) {
+                        System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription());
+                    }
+                    System.out.printf("[ Total ]%n W %s%n%n1. 주문      2. 메뉴판%n", cart.sumCart());
+                    int num2 = sc.nextInt();
+                    sc.nextLine();
+                    if (num2 == 1) {
+                        //add sale
+                        System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.", cart.sumCart());
+                        cart.clearCart();
+                    } else {
+                        break;
+                    }
                 }
 
                 while (true) {
@@ -64,25 +86,20 @@ public class Kiosk {
                         int num3 = sc.nextInt();
                         sc.nextLine();
                         if (num3 == 1) {
-                            //add item
+                            cart.addCartItem(new CartItem(category.getName(), category.getPrice(), category.getDescription()));
                             System.out.printf("%s 이 장바구니에 추가되었습니다.%n", category.getName());
                             System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.");
                         } else if (num3 == 2) {
                             System.out.println("취소되었습니다.");
-                        }else{
+                        } else {
                             throw new IllegalArgumentException("오류 : 1~2번 숫자를 입력해주세요.");
                         }
-
                     } else if (num2 == 0) {
                         break;
                     } else {
-                        throw new IllegalArgumentException("오류 : 0~"+menuItems.size()+"번 숫자를 입력해주세요.");
+                        throw new IllegalArgumentException("오류 : 0~" + menuItems.size() + "번 숫자를 입력해주세요.");
                     }
-
-                    break;
                 }
-
-                break;
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
