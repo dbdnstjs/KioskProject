@@ -6,7 +6,7 @@ import java.util.List;
 // 기본값들을 지정하고 Kiosk를 실행하는 메인 클래스
 public class Lv2Kiosk {
     public static void main(String[] args) {
-        List<Menu> menus = new ArrayList<>();
+        final List<Menu> menus = new ArrayList<>();
         Menu burger = new Menu("1", "Burgers");
         Menu drink = new Menu("2", "Drinks");
         Menu dessert = new Menu("3", "Desserts");

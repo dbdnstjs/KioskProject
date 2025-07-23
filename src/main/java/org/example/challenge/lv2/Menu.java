@@ -5,8 +5,8 @@ import java.util.List;
 
 // 메뉴 카테고리 이름과 해당 항목들을 포함하는 클래스
 public class Menu {
-    String num, name;
-    List<MenuItem> menuItems = new ArrayList<>();
+    private final String num, name;
+    private final List<MenuItem> menuItems = new ArrayList<>();
 
     Menu(String num, String name) {
         this.num = num;

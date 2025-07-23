@@ -6,8 +6,8 @@ import java.util.Scanner;
 // 버거, 음료, 디저트를 출력하고 사용자 입력을 처리하는 키오스크 클래스
 // 할인률 추가 및 stream을 이용하여 특정 메뉴 빼기 및 출력 (캡슐화)
 public class Kiosk {
-    List<Menu> menus;
-    Cart cart = new Cart();
+    private final List<Menu> menus;
+    private final Cart cart = new Cart();
 
     Kiosk(List<Menu> menus) {
         this.menus = menus;
@@ -45,21 +45,21 @@ public class Kiosk {
                     if(num1==5){
                         cart.clearCart();
                         continue;
-                    }
-                    System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
-
-                    for (CartItem item : cart.getCartItems()) {
-                        System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription());
-                    }
-                    System.out.printf("[ Total ]%n W %s%n%n1. 주문      2. 메뉴판%n", cart.sumCart());
-                    int num2 = sc.nextInt();
-                    sc.nextLine();
-                    if (num2 == 1) {
-                        //add sale
-                        System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.", cart.sumCart());
-                        cart.clearCart();
-                    } else {
-                        continue;
+                    }else{
+                        System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
+                        for (CartItem item : cart.getCartItems()) {
+                            System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription());
+                        }
+                        System.out.printf("[ Total ]%n W %s%n%n1. 주문      2. 메뉴판%n", cart.sumCart());
+                        int num2 = sc.nextInt();
+                        sc.nextLine();
+                        if (num2 == 1) {
+                            //add sale
+                            System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.", cart.sumCart());
+                            cart.clearCart();
+                        } else {
+                            continue;
+                        }
                     }
                 }
 
