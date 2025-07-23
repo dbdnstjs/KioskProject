@@ -1,6 +1,7 @@
 package org.example.challenge.lv2;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class Cart {
     BigDecimal sumCart(){
         BigDecimal sum = BigDecimal.ZERO;
         for(CartItem item : cartItems) sum = sum.add(item.getPrice());
-        return sum;
+        return sum.setScale(2, RoundingMode.HALF_UP);
     }
 
     void clearCart(){

@@ -47,6 +47,7 @@ public class Kiosk {
                         continue;
                     }
                     System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
+
                     for (CartItem item : cart.getCartItems()) {
                         System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription());
                     }
@@ -58,7 +59,7 @@ public class Kiosk {
                         System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.", cart.sumCart());
                         cart.clearCart();
                     } else {
-                        break;
+                        continue;
                     }
                 }
 
@@ -89,6 +90,7 @@ public class Kiosk {
                             cart.addCartItem(new CartItem(category.getName(), category.getPrice(), category.getDescription()));
                             System.out.printf("%s 이 장바구니에 추가되었습니다.%n", category.getName());
                             System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.");
+                            break;
                         } else if (num3 == 2) {
                             System.out.println("취소되었습니다.");
                         } else {

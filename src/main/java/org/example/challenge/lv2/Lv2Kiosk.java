@@ -18,7 +18,7 @@ public class Lv2Kiosk {
         drink.addMenuItem(new MenuItem("ShackDrink", "2.9", "토마토, 양상추, 쉑소스가 들어간 음료"));
         drink.addMenuItem(new MenuItem("SmokeDrink", "4.9", "베이컨, 체리 페퍼에 쉑소스가 들어간 음료"));
 
-        dessert.addMenuItem(new MenuItem("Cheese", "3.9 ", "평범한 치즈"));
+        dessert.addMenuItem(new MenuItem("Cheese", "3.9", "평범한 치즈"));
         dessert.addMenuItem(new MenuItem("Ham", "2.4", "평범한 햄"));
 
         menus.add(burger);
