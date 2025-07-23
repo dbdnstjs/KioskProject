@@ -42,10 +42,10 @@ public class Kiosk {
                 }
 
                 if ((num1 == 4 || num1 == 5) && !cart.getCartItems().isEmpty()) {
-                    if(num1==5){
+                    if (num1 == 5) {
                         cart.clearCart();
                         continue;
-                    }else{
+                    } else {
                         System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
                         for (CartItem item : cart.getCartItems()) {
                             System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription());
@@ -54,11 +54,22 @@ public class Kiosk {
                         int num2 = sc.nextInt();
                         sc.nextLine();
                         if (num2 == 1) {
-                            //add sale
-                            System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.", cart.sumCart());
+                            System.out.println("할인 정보를 입력해주세요.");
+                            int cnt = 0;
+                            for (SaleItem item : SaleItem.values()) {
+                                System.out.printf("%d. %-11s : %s%n", ++cnt, item.getName(), item.getPrice());
+                            }
+
+                            int num3 = sc.nextInt();
+                            sc.nextLine();
+
+                            System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.%n", cart.sumCart());
                             cart.clearCart();
-                        } else {
                             continue;
+                        } else if (num2 == 2) {
+                            continue;
+                        } else {
+                            throw new IllegalArgumentException("오류 : 1~2번 숫자를 입력해주세요.");
                         }
                     }
                 }

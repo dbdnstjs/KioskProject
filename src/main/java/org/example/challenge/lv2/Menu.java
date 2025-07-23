@@ -28,6 +28,4 @@ public class Menu {
     String getNum() {
         return num;
     }
-
-
 }
