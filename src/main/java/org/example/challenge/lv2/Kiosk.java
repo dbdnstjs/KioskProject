@@ -24,7 +24,7 @@ public class Kiosk {
             while (true) {
                 //print main menu
                 System.out.println("[ MAIN MENU ]");
-                menus.stream().forEach(menu -> System.out.printf("%s. %s%n", menu.getNum(), menu.getName()));
+                menus.forEach(menu -> System.out.printf("%s. %s%n", menu.getNum(), menu.getName()));
                 System.out.printf("%d. %-11s | %-5s %n", 0, "종료", "종료");
 
                 if (!cart.getCartItems().isEmpty()) {
@@ -68,7 +68,7 @@ public class Kiosk {
                         continue;
                     } else {
                         System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
-                        cart.getCartItems().stream().forEach(item -> System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription()));
+                        cart.getCartItems().forEach(item -> System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription()));
                         System.out.printf("[ Total ]%n W %s%n%n1. 주문      2. 메뉴판%n", cart.sumCart());
                         int num2 = sc.nextInt();
                         sc.nextLine();
