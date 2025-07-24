@@ -2,7 +2,6 @@ package org.example.challenge.lv2;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -25,9 +24,7 @@ public class Kiosk {
             while (true) {
                 //print main menu
                 System.out.println("[ MAIN MENU ]");
-                for (Menu category : menus) {
-                    System.out.printf("%s. %s%n", category.getNum(), category.getName());
-                }
+                menus.stream().forEach(menu -> System.out.printf("%s. %s%n", menu.getNum(), menu.getName()));
                 System.out.printf("%d. %-11s | %-5s %n", 0, "종료", "종료");
 
                 if (!cart.getCartItems().isEmpty()) {
@@ -50,15 +47,16 @@ public class Kiosk {
                 if ((num1 == 4 || num1 == 5) && !cart.getCartItems().isEmpty()) {
                     if (num1 == 5) {
                         System.out.printf("어떤 주문을 취소하겠습니까?%n%n[ Orders ]%n");
-                        int cnt = 0;
-                        for (CartItem item : cart.getCartItems()) {
-                            System.out.printf("%d. %-12s | W%-5s | %s%n", ++cnt, item.getName(), item.getPrice(), item.getDescription());
-                        }
+                        IntStream.range(0,cart.getCartItems().size()).forEach(i->{
+                            CartItem item = cart.getCartItems().get(i);
+                            System.out.printf("%d. %-12s | W%-5s | %s%n", i+1, item.getName(), item.getPrice(), item.getDescription());
+                        });
+
                         int num2 = sc.nextInt();
                         sc.nextLine();
                         if (num2 > 0 && num2 <= cart.getCartItems().size()) {
                             List<CartItem> items = IntStream.range(0, cart.getCartItems().size())
-                                    .filter(i -> i != num2-1)
+                                    .filter(i -> i != num2 - 1)
                                     .mapToObj(i -> cart.getCartItems().get(i))
                                     .collect(Collectors.toList());
                             cart.setCartItems(items);
@@ -70,18 +68,16 @@ public class Kiosk {
                         continue;
                     } else {
                         System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
-                        for (CartItem item : cart.getCartItems()) {
-                            System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription());
-                        }
+                        cart.getCartItems().stream().forEach(item -> System.out.printf("선택한 메뉴: %s | W%s | %s %n", item.getName(), item.getPrice(), item.getDescription()));
                         System.out.printf("[ Total ]%n W %s%n%n1. 주문      2. 메뉴판%n", cart.sumCart());
                         int num2 = sc.nextInt();
                         sc.nextLine();
                         if (num2 == 1) {
                             System.out.println("할인 정보를 입력해주세요.");
-                            int cnt = 0;
-                            for (SaleItem item : SaleItem.values()) {
-                                System.out.printf("%d. %-11s : %s%n", ++cnt, item.getName(), item.getPrice());
-                            }
+                            IntStream.range(0,SaleItem.values().length).forEach(i->{
+                                SaleItem item = SaleItem.values()[i];
+                                System.out.printf("%d. %-11s : %s%n", i+1, item.getName(), item.getPrice());
+                            });
 
                             int num3 = sc.nextInt();
                             sc.nextLine();
@@ -112,10 +108,11 @@ public class Kiosk {
                     else throw new IllegalArgumentException("오류 : 0~4번 숫자를 입력해주세요.");
 
                     List<MenuItem> menuItems = menus.get(num1 - 1).getMenuItems();
-                    int cnt = 0;
-                    for (MenuItem category : menuItems) {
-                        System.out.printf("%d. %-12s | W%-5s | %s%n", ++cnt, category.getName(), category.getPrice(), category.getDescription());
-                    }
+                    IntStream.range(0,menuItems.size()).forEach(i->{
+                        MenuItem category = menuItems.get(i);
+                        System.out.printf("%d. %-12s | W%-5s | %s%n", i+1, category.getName(), category.getPrice(), category.getDescription());
+                    });
+
                     System.out.printf("%d. %s%n", 0, "뒤로가기");
 
                     int num2 = sc.nextInt(); // select menu
