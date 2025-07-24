@@ -74,7 +74,7 @@
 - 범위 밖 입력에 대해 예외 처리
 
 ***
-# Challenge - Lv1Kiosk - 콘솔 기반 키오스크 주문 프로그램
+# Challenge - Lv1Kiosk
 
 ## 개요  
 `Lv1Kiosk`는 콘솔에서 메뉴를 선택해 장바구니에 담고, 주문 및 취소 기능까지 구현한 키오스크 프로그램입니다.  
@@ -99,7 +99,7 @@
 - Java 컬렉션(List) 활용  
 
 ***
-# Challenge - Lv2Kiosk - 콘솔 키오스크 주문 프로그램
+# Challenge - Lv2Kiosk
 
 ## 개요  
 `Lv2Kiosk`는 콘솔 환경에서 메뉴 카테고리(버거, 음료, 디저트)를 관리하고,  
