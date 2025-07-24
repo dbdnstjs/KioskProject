@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Scanner;
 
-//add Stream, Lambda
+//add Stream, Lambda Cart view/delete functionality
 // 버거, 음료, 디저트를 출력하고 사용자 입력을 처리하는 키오스크 클래스
 // 할인률 추가 및 stream을 이용하여 특정 메뉴 빼기 및 출력 (캡슐화)
 public class Kiosk {
@@ -46,7 +46,20 @@ public class Kiosk {
 
                 if ((num1 == 4 || num1 == 5) && !cart.getCartItems().isEmpty()) {
                     if (num1 == 5) {
-                        cart.clearCart();
+                        System.out.printf("어떤 주문을 취소하겠습니까?%n%n[ Orders ]%n");
+                        int cnt = 0;
+                        for (CartItem item : cart.getCartItems()) {
+                            System.out.printf("%d. %-12s | W%-5s | %s%n", ++cnt, item.getName(), item.getPrice(), item.getDescription());
+                        }
+                        int num2 = sc.nextInt();
+                        sc.nextLine();
+                        if (num2 > 0 && num2 <= cart.getCartItems().size()) {
+                            cart.getCartItems().remove(num2 - 1);
+                            System.out.printf("%d번 주문이 취소되었습니다.%n",num2);
+                        } else {
+                            throw new IllegalArgumentException("오류 : 1~" + cart.getCartItems().size() + "번 숫자를 입력해주세요.");
+                        }
+
                         continue;
                     } else {
                         System.out.printf("아래와 같이 주문 하시겠습니까?%n%n[ Orders ]%n");
@@ -65,15 +78,15 @@ public class Kiosk {
 
                             int num3 = sc.nextInt();
                             sc.nextLine();
-                            if(num3>0&&num3<5){
+                            if (num3 > 0 && num3 < 5) {
                                 SaleItem[] item = SaleItem.values();
-                                BigDecimal total,discountRate,discountPercent;
-                                discountPercent = new BigDecimal(item[num3-1].getPrice());
+                                BigDecimal total, discountRate, discountPercent;
+                                discountPercent = new BigDecimal(item[num3 - 1].getPrice());
                                 discountRate = BigDecimal.ONE.subtract(discountPercent.divide(new BigDecimal("100"), 2, RoundingMode.HALF_UP));
-                                total = cart.sumCart().multiply(discountRate.setScale(2,RoundingMode.HALF_UP));
-                                System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.%n",total);
+                                total = cart.sumCart().multiply(discountRate.setScale(2, RoundingMode.HALF_UP));
+                                System.out.printf("주문이 완료되었습니다. 금액은 W %s 입니다.%n", total);
                                 cart.clearCart();
-                            }else{
+                            } else {
                                 throw new IllegalArgumentException("오류 : 1~4번 숫자를 입력해주세요.");
                             }
                             continue;
