@@ -7,7 +7,7 @@ import java.util.List;
 
 // 장바구니 아이템을 추가하고, 총합을 계산하며, 전체 비우기 기능을 제공하는 클래스
 public class Cart {
-    private final List<CartItem> cartItems = new ArrayList<>();
+    private List<CartItem> cartItems = new ArrayList<>();
 
     void addCartItem(CartItem cartItem){
         cartItems.add(cartItem);
@@ -15,6 +15,10 @@ public class Cart {
 
     List<CartItem> getCartItems(){
         return cartItems;
+    }
+
+    void setCartItems(List<CartItem> cartItems){
+        this.cartItems = cartItems;
     }
 
     BigDecimal sumCart(){

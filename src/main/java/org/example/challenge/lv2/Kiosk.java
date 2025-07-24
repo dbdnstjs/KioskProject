@@ -2,8 +2,11 @@ package org.example.challenge.lv2;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 //add Stream, Lambda Cart view/delete functionality
 // 버거, 음료, 디저트를 출력하고 사용자 입력을 처리하는 키오스크 클래스
@@ -54,8 +57,12 @@ public class Kiosk {
                         int num2 = sc.nextInt();
                         sc.nextLine();
                         if (num2 > 0 && num2 <= cart.getCartItems().size()) {
-                            cart.getCartItems().remove(num2 - 1);
-                            System.out.printf("%d번 주문이 취소되었습니다.%n",num2);
+                            List<CartItem> items = IntStream.range(0, cart.getCartItems().size())
+                                    .filter(i -> i != num2-1)
+                                    .mapToObj(i -> cart.getCartItems().get(i))
+                                    .collect(Collectors.toList());
+                            cart.setCartItems(items);
+                            System.out.printf("%d번 주문이 취소되었습니다.%n", num2);
                         } else {
                             throw new IllegalArgumentException("오류 : 1~" + cart.getCartItems().size() + "번 숫자를 입력해주세요.");
                         }
