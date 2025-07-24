@@ -24,6 +24,7 @@ public class Cart {
     BigDecimal sumCart(){
         BigDecimal sum = BigDecimal.ZERO;
         for(CartItem item : cartItems) sum = sum.add(item.getPrice());
+        //소수점 2번쨰 자리 반올림
         return sum.setScale(2, RoundingMode.HALF_UP);
     }
 
